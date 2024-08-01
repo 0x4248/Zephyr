@@ -27,6 +27,7 @@ public class KMain {
     public static void kernel_init(String[] args) throws InterruptedException {
         printkSystem.printkInit();
         printkSystem.printk(KERN_LEVEL.INFO,"Booting Zephyr Kernel 1.0.0-dev ARM64");
+        printkSystem.printk(KERN_LEVEL.INFO,"Start init as process");
         process init = new process("init", new KMain()::init);
     }
 }

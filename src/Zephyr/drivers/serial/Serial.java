@@ -30,4 +30,14 @@ public class Serial {
 
         System.out.print(msg);
     }
+
+    public static String readBuffer() {
+        byte[] buffer = new byte[1024];
+        try {
+            System.in.read(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new String(buffer);
+    }
 }

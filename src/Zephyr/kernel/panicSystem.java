@@ -11,9 +11,19 @@ package Zephyr.kernel;
 
 import Zephyr.drivers.serial.Serial;
 
+import java.util.Optional;
+
 public class panicSystem {
-    public static void panic(String msg) {
-        Serial.write("--- [Kernel panic - message: " + msg+"]---\n");
+    public static void panic(String msg, String exeption) {
+        Serial.write("------ [Kernel panic - message: " + msg+"]------\n");
+        if (exeption == "")
+        {
+            Serial.write("No exception\n");
+        }
+        else
+        {
+            Serial.write("Exception: "+exeption+"\n");
+        }
         Serial.write("Stack trace:\n");
         Serial.write("Called from: "+Thread.currentThread().getStackTrace()[2].getClassName()+"\n");
         Serial.write("Function: "+Thread.currentThread().getStackTrace()[2].getMethodName()+"\n");
@@ -21,7 +31,7 @@ public class panicSystem {
         for (int i = 2; i < Thread.currentThread().getStackTrace().length; i++) {
             Serial.write(Thread.currentThread().getStackTrace()[i].getClassName()+"."+Thread.currentThread().getStackTrace()[i].getMethodName()+"("+Thread.currentThread().getStackTrace()[i].getFileName()+":"+Thread.currentThread().getStackTrace()[i].getLineNumber()+")\n");
         }
-        Serial.write("--[End kernel panic]--\n");
+        Serial.write("------ [End kernel panic] ------\n");
         Serial.write("System halted\n");
         while (true) {
         }

@@ -9,6 +9,9 @@
 
 package Zephyr.drivers.device;
 
+import Zephyr.kernel.printkSystem;
+import Zephyr.kernel.printk.KERN_LEVEL;
+
 import java.util.*;
 
 public class DeviceManager {
@@ -17,18 +20,16 @@ public class DeviceManager {
     public static void registerDevice(Device device) {
         if (!devices.containsKey(device.getName())) {
             devices.put(device.getName(), device);
-            System.out.println("Device " + device.getName() + " registered.");
         } else {
-            System.out.println("Device " + device.getName() + " is already registered.");
+            printkSystem.printk(KERN_LEVEL.ERROR, "Device " + device.getName() + " already registered.");
         }
     }
 
     public static void unregisterDevice(String name) {
         if (devices.containsKey(name)) {
             devices.remove(name);
-            System.out.println("Device " + name + " unregistered.");
         } else {
-            System.out.println("Device " + name + " is not registered.");
+            printkSystem.printk(KERN_LEVEL.ERROR, "Device " + name + " not found.");
         }
     }
 

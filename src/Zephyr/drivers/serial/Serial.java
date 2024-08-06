@@ -21,16 +21,24 @@ public class Serial {
         serialDevice.register();
         return 0;
     }
+
+    /**
+     * write - Write a message to the serial device.
+     * @param msg
+     */
     public static void write(String msg) {
         try {
             serialDevice.write(msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.print(msg);
     }
 
+    /**
+     * readBuffer - Read a buffer from the serial device.
+     * @return String
+     */
     public static String readBuffer() {
         byte[] buffer = new byte[1024];
         try {

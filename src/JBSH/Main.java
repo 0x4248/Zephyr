@@ -10,7 +10,7 @@ import Zephyr.drivers.console.Console;
 
 public class Main {
     public static void main(String[] args) {
-        Console.putString("Started JSBSH");
+        Console.putString("Started JSBSH\n");
         while (true){}
     }
 }
